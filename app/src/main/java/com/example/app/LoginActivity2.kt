@@ -20,11 +20,11 @@ class LoginActivity2 : AppCompatActivity() {
         confirm = findViewById(R.id.confirm)
 
         SoftKeyboardListener.registerListener(this, object : OnSoftKeyboardListener {
-            override fun showKeyboard(keyboardHeight: Int, diff: Int) {
+            override fun onKeyboardShow(keyboardHeight: Int, diff: Int) {
                 rootView.scrollTo(0, help.bottom - diff)
             }
 
-            override fun hideKeyboard(keyboardHeight: Int) {
+            override fun onKeyboardHide(keyboardHeight: Int) {
                 rootView.scrollTo(0, 0)
             }
         })
