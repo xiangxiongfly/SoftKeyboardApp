@@ -8,6 +8,12 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/toEditTextActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EditText基础" />
+
+    <Button
         android:id="@+id/toLoginActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

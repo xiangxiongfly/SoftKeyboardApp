@@ -55,8 +55,10 @@ class ListActivity : AppCompatActivity() {
 //                )
 //            }
 
-            editText2.postDelayed({ KeyboardUtils.toggleSoftInput(editText) }, 500)
+//            editText2.postDelayed({) }, 500)
 
+
+            KeyboardUtils.hideKeyboard(currentFocus)
 
         }
 

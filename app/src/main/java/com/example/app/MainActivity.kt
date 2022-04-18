@@ -9,6 +9,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        findViewById<Button>(R.id.toEditTextActivity).setOnClickListener {
+            startActivity(Intent(this, EditTextActivity::class.java))
+        }
         findViewById<Button>(R.id.toLoginActivity).setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
