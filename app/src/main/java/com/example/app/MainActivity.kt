@@ -18,5 +18,8 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.toLoginActivity2).setOnClickListener {
             startActivity(Intent(this, LoginActivity2::class.java))
         }
+        findViewById<Button>(R.id.toListActivity).setOnClickListener {
+            startActivity(Intent(this, ListActivity::class.java))
+        }
     }
 }

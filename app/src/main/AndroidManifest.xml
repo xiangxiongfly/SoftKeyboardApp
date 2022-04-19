@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity android:name=".EditTextActivity" />
-        <activity android:name=".ListActivity" />
+        <activity
+            android:name=".ListActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".LoginActivity2" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">

@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
@@ -18,9 +16,11 @@ class ListActivity : AppCompatActivity() {
     lateinit var bottomNav: TextView
     lateinit var rootView: LinearLayout
     lateinit var scrollView: NestedScrollView
-    lateinit var editText: EditText
-    lateinit var editText2: EditText
+    lateinit var etFooter: EditText
+    lateinit var etHeader: EditText
     lateinit var btn: Button
+    var flag = 0
+    var isShowKeyboard = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,70 +31,63 @@ class ListActivity : AppCompatActivity() {
         scrollView = findViewById(R.id.scrollView)
 
         val footerView = LayoutInflater.from(this).inflate(R.layout.layout_footer, null)
-        val headerView = LayoutInflater.from(this).inflate(R.layout.layout_header, null)
 
-        editText = footerView.findViewById(R.id.editText)
-        editText2 = headerView.findViewById(R.id.editText2)
+        etHeader = findViewById(R.id.etHeader)
+        etFooter = footerView.findViewById(R.id.etFooter)
         btn = footerView.findViewById(R.id.btn)
-        btn.setOnClickListener {
-//            editText.clearFocus()
-//            KeyboardUtils.hideKeyboard(currentFocus)
-//            object : Thread() {
-//                override fun run() {
-//                    val instrumentation = Instrumentation()
-//                    instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
-//                }
-//            }.start()
-
-
-//            val view: View? = currentFocus
-//            if (view != null) {
-//                (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
-//                    view.getWindowToken(),
-//                    0
-//                )
-//            }
-
-//            editText2.postDelayed({) }, 500)
-
-
-            KeyboardUtils.hideKeyboard(currentFocus)
-
-        }
 
         listView.addFooterView(footerView)
-        listView.addHeaderView(headerView)
 
-        val array = Array(100) { it.toString() }
+        val array = Array(30) { it.toString() }
         listView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, array)
 
-        SoftKeyboardListener.registerListener(
-            this,
-            object : SoftKeyboardListener.OnSoftKeyboardListener {
+        SoftKeyboardListener.with(this)
+            .registerListener(object : SoftKeyboardListener.OnSoftKeyboardListener {
                 override fun onKeyboardShow(keyboardHeight: Int, diff: Int) {
+                    Log.e("TAG", "onKeyboardShow")
+                    isShowKeyboard = true
                 }
 
-                override fun onKeyboardHide(keyboardHeight: Int) {
-                    Log.e("TAG", "hideKeyboard")
+                override fun onKeyboardHide() {
+                    Log.e("TAG", "onKeyboardHide")
+                    isShowKeyboard = false
                     bottomNav.visibility = VISIBLE
                 }
             })
 
-        editText2.setOnTouchListener { v, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                bottomNav.visibility = GONE
-                editText2.requestFocus()
-                KeyboardUtils.showKeyboard(editText2)
-            }
-            return@setOnTouchListener false
+        btn.setOnClickListener {
+            KeyboardUtils.hideKeyboard(btn)
         }
-        editText.setOnTouchListener { v, event ->
+        etHeader.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
+                Log.e("TAG", "header down")
+                flag = 1
                 bottomNav.visibility = GONE
-                editText.requestFocus()
-                KeyboardUtils.showKeyboard(editText)
+                etHeader.isFocusable = true
+                etHeader.isFocusableInTouchMode = true;
+                etHeader.requestFocus()
+                KeyboardUtils.forceShowKeyboard(etHeader)
             }
-            return@setOnTouchListener false
+            false
         }
+
+
+        etFooter.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                Log.e("TAG", "footer down")
+                flag = 2
+                bottomNav.visibility = GONE
+                etFooter.isFocusable = true
+                etFooter.isFocusableInTouchMode = true
+                etFooter.requestFocus()
+                KeyboardUtils.forceShowKeyboard(etFooter)
+            }
+            false
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        SoftKeyboardListener.with(this).unregisterListener()
     }
 }

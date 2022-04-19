@@ -1,9 +1,11 @@
 package com.example.app
 
-import android.app.Activity
+import android.app.Instrumentation
 import android.content.Context
+import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 
 object KeyboardUtils {
     /**
@@ -15,8 +17,18 @@ object KeyboardUtils {
             return
         val manager: InputMethodManager = view.context
             .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        view.requestFocus()
         manager.showSoftInput(view, 0)
+    }
+
+    /**
+     * 强制显示软键盘
+     */
+    fun forceShowKeyboard(view: EditText?) {
+        if (view == null)
+            return
+        val manager: InputMethodManager = view.context
+            .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        manager.showSoftInput(view, InputMethodManager.SHOW_FORCED)
     }
 
     /**
@@ -31,6 +43,23 @@ object KeyboardUtils {
     }
 
     /**
+     * 强制隐藏软键盘
+     * 需要判断软键盘是否开启
+     */
+    fun forceHideKeyboard() {
+        object : Thread() {
+            override fun run() {
+                try {
+                    val inst = Instrumentation()
+                    inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }.start()
+    }
+
+    /**
      * 切换软键盘
      */
     fun toggleSoftInput(view: View?) {
@@ -40,6 +69,4 @@ object KeyboardUtils {
             .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         manager.toggleSoftInput(0, 0)
     }
-
-
 }
