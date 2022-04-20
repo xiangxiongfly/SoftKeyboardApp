@@ -14,30 +14,20 @@ class EditTextActivity : AppCompatActivity() {
     private lateinit var btn2: Button
     private lateinit var btn3: Button
     private lateinit var btn4: Button
-    private lateinit var btn5: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_text)
         initView()
-
     }
 
     private fun initView() {
-        // 点击外部隐藏软键盘，提升用户体验
-        findViewById<ViewGroup>(Window.ID_ANDROID_CONTENT).setOnClickListener {
-            // 隐藏软键，避免内存泄漏
-            KeyboardUtils.hideKeyboard(currentFocus)
-        }
-
-
         editText1 = findViewById(R.id.editText1)
         editText2 = findViewById(R.id.editText2)
         btn1 = findViewById(R.id.btn1)
         btn2 = findViewById(R.id.btn2)
         btn3 = findViewById(R.id.btn3)
         btn4 = findViewById(R.id.btn4)
-        btn5 = findViewById(R.id.btn5)
 
         //EditText1获取焦点
         btn1.setOnClickListener {
@@ -59,15 +49,17 @@ class EditTextActivity : AppCompatActivity() {
             KeyboardUtils.showKeyboard(editText2)
         }
 
-//        //弹出软键盘
+        //隐藏软键盘
         btn4.setOnClickListener {
-            KeyboardUtils.showKeyboard(editText1)
-        }
-//
-//        //隐藏软键盘
-        btn5.setOnClickListener {
             if (currentFocus != null)
                 KeyboardUtils.hideKeyboard(currentFocus)
+        }
+
+
+        // 点击外部隐藏软键盘，提升用户体验
+        findViewById<ViewGroup>(Window.ID_ANDROID_CONTENT).setOnClickListener {
+            // 隐藏软键，避免内存泄漏
+            KeyboardUtils.hideKeyboard(currentFocus)
         }
     }
 }

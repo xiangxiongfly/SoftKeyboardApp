@@ -43,7 +43,7 @@ class ListActivity : AppCompatActivity() {
 
         SoftKeyboardListener.with(this)
             .registerListener(object : SoftKeyboardListener.OnSoftKeyboardListener {
-                override fun onKeyboardShow(keyboardHeight: Int, diff: Int) {
+                override fun onKeyboardShow(keyboardHeight: Int) {
                     Log.e("TAG", "onKeyboardShow")
                     isShowKeyboard = true
                 }

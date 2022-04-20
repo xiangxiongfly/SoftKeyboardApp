@@ -41,24 +41,19 @@
             android:text="EditText1失去焦点" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EditText2获取焦点并弹出软键盘" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btn4"
+            android:id="@+id/btn3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="弹出软键盘" />
+            android:text="EditText2获取焦点并弹出软键盘" />
 
         <Button
-            android:id="@+id/btn5"
+            android:id="@+id/btn4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收起软键盘" />

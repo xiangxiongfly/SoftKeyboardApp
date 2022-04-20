@@ -7,6 +7,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 
+/**
+ * 软键盘工具类
+ */
 object KeyboardUtils {
     /**
      * 显示软键盘
@@ -21,7 +24,7 @@ object KeyboardUtils {
     }
 
     /**
-     * 强制显示软键盘
+     * 强制显示软键盘，页面滚动时不会收起
      */
     fun forceShowKeyboard(view: EditText?) {
         if (view == null)
@@ -44,7 +47,7 @@ object KeyboardUtils {
 
     /**
      * 强制隐藏软键盘
-     * 需要判断软键盘是否开启
+     * 谨慎使用，需要判断软键盘是否开启
      */
     fun forceHideKeyboard() {
         object : Thread() {

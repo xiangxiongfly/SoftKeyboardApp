@@ -3,6 +3,7 @@ package com.example.app
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.View
+import android.view.animation.LinearInterpolator
 
 const val TRANSLATION_Y = "translationY"
 const val SCALE_X = "scaleX"
@@ -15,6 +16,7 @@ object AnimatorUtils {
      */
     fun translationY(view: View, from: Float, to: Float) {
         ObjectAnimator.ofFloat(view, TRANSLATION_Y, from, to).apply {
+            interpolator = LinearInterpolator()
             duration = 300L
         }.start()
     }
@@ -22,7 +24,7 @@ object AnimatorUtils {
     /**
      * 缩放动画
      */
-    fun scale(view: View, fromScale: Float, toScale: Float) {
+    fun scaleXY(view: View, fromScale: Float, toScale: Float) {
         view.apply {
             pivotX = (view.width / 2).toFloat()
             pivotY = (view.height / 2).toFloat()

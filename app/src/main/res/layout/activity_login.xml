@@ -23,7 +23,7 @@
         android:scrollbars="vertical">
 
         <LinearLayout
-            android:id="@+id/wrapper"
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
@@ -73,12 +73,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:background="#FF0000"
                 android:text="确定" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
