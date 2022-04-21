@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ScrollViewActivity2"></activity>
+        <activity android:name=".ScrollViewActivity" />
+        <activity android:name=".ChatActivity" />
         <activity android:name=".EditTextActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".LoginActivity2" />

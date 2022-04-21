@@ -12,6 +12,12 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.toEditTextActivity).setOnClickListener {
             startActivity(Intent(this, EditTextActivity::class.java))
         }
+        findViewById<Button>(R.id.toScrollViewActivity1).setOnClickListener {
+            startActivity(Intent(this, ScrollViewActivity2::class.java))
+        }
+        findViewById<Button>(R.id.toScrollViewActivity2).setOnClickListener {
+            startActivity(Intent(this, ScrollViewActivity::class.java))
+        }
         findViewById<Button>(R.id.toLoginActivity).setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
@@ -20,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.toListActivity).setOnClickListener {
             startActivity(Intent(this, ListActivity::class.java))
+        }
+        findViewById<Button>(R.id.toChatActivity).setOnClickListener {
+            startActivity(Intent(this, ChatActivity::class.java))
         }
     }
 }
